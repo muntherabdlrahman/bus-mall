@@ -30,7 +30,7 @@ color: blueviolet;
 border: inherit;
 }
 
-footer{
+footer section{
     font-family: serif;
     font-size: xx-small;
     text-align: center;
@@ -43,3 +43,28 @@ body p{
     background-color: lightcoral;
 }
 
+
+#result{
+    color: #963122;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: smaller;
+    text-align:initial;
+    padding: 10px;
+
+
+
+}
+button{
+    background-color: #e93b81;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    
+}
+
+main p{
+    font-size: x-small;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    text-align: center;
+    color:#21221a ;
+}
