@@ -9,8 +9,8 @@ let sideImageElement = document.getElementById('side-image')
 let upperImageIndex;
 let lowerImageIndex;
 let sideImageIndex;
-
-let maxAttempts = 25;
+let select=prompt('press number of votes you will take it');
+let maxAttempts = select;
 let userAttemptsCounter = 0;
 
 let allPro = [];
