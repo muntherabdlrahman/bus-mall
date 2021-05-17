@@ -218,7 +218,7 @@ function createFun(){
         for (let i = 0; i < allPro.length; i++) {
             liElement = document.createElement('li');
             list.appendChild(liElement);
-            liElement.textContent = `name of product (${allPro[i].name})   and get   (${allPro[i].votes})  of   votes`;
+            liElement.textContent = `Name of Product (${allPro[i].name})   and get   (${allPro[i].votes})  of   Votes `;
 
     
 }}
