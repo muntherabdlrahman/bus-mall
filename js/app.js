@@ -9,7 +9,7 @@ let sideImageElement = document.getElementById('side-image')
 let upperImageIndex;
 let lowerImageIndex;
 let sideImageIndex;
-let select=prompt('press number of votes you will take it');
+let select = prompt('press number of votes you will take it');
 let maxAttempts = select;
 let userAttemptsCounter = 0;
 
@@ -18,9 +18,10 @@ let proName = [];
 let proVotes = [];
 let proShown = [];
 
-let newupperImageindex = [];
-let newlowerImageindex = [];
-let newsideImageindex = [];
+let newnewImageindex;
+let newImageindex = [];
+// let newlowerImageindex = [];
+// let newsideImageindex = [];
 
 ///////////////////////////////////////////////////////////////
 //object 
@@ -61,45 +62,68 @@ new Product('wine-glass', '../imgs/wine-glass copy.jpg');
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 // random function
-
-function generateRandomIndex() {
-    return Math.floor(Math.random() * allPro.length);
-
-}
+let min=0;
+let max=19;
+function  generateRandomIndex() {
+    return Math.floor((Math.random() * (max - min) ) + min * allPro.length);
+  }
 ///////////////////////////////////////////////////
 
 function renderImages() {
     upperImageIndex = generateRandomIndex();
     lowerImageIndex = generateRandomIndex();
     sideImageIndex = generateRandomIndex();
-
-
-
-
-    /////////////////////////////////////////////////////////////
-
-
-
-    //////////////////////////////////////
-
-
-    do {
-        lowerImageIndex = generateRandomIndex();
-        upperImageIndex = generateRandomIndex();
-        sideImageIndex = generateRandomIndex();
-
-
-    } while (upperImageIndex === sideImageIndex|| sideImageIndex === lowerImageIndex|| lowerImageIndex === upperImageIndex);
-
-        upperImageElement.src = allPro[upperImageIndex].source;
-        lowerImageElement.src = allPro[lowerImageIndex].source;
-        sideImageElement.src = allPro[sideImageIndex].source;
-        
-        
-        allPro[lowerImageIndex].shown++;
-        allPro[upperImageIndex].shown++;
-        allPro[sideImageIndex].shown++;
     
+    let newImageindex = [upperImageIndex, lowerImageIndex, sideImageIndex];
+    // console.log(newImageindex);
+
+    // do {
+
+    //     lowerImageIndex = generateRandomIndex();
+    //     upperImageIndex = generateRandomIndex();
+    //     sideImageIndex = generateRandomIndex();
+
+
+
+    // } 
+
+    
+    if (newImageindex === sideImageIndex || newImageindex === lowerImageIndex || newImageindex === upperImageIndex); {
+    for (let i = 0; i < 3; i++) {
+            console.log(newImageindex, 'insidewhile')
+
+            upperImageElement.src = allPro[upperImageIndex].source;
+            lowerImageElement.src = allPro[lowerImageIndex].source;
+            sideImageElement.src = allPro[sideImageIndex].source;
+
+
+            allPro[lowerImageIndex].shown++;
+            allPro[upperImageIndex].shown++;
+            allPro[sideImageIndex].shown++;
+            sideImageIndex+1;
+            lowerImageIndex+1;
+            upperImageIndex+1;
+
+        }
+         if(newImageindex=[upperImageIndex, lowerImageIndex, sideImageIndex]){
+            upperImageElement.src = allPro[newImageindex[0]].source;
+            lowerImageElement.src = allPro[newImageindex[1]].source;
+            sideImageElement.src = allPro[newImageindex[2]].source;
+
+            
+            allPro[newImageindex[0]].shown++;
+            allPro[newImageindex[1]].shown++;
+            allPro[newImageindex[2]].shown++;
+            console.log(newImageindex,'2f');
+
+
+
+        }
+    }
+
+
+
+
 
 
 
@@ -157,7 +181,7 @@ function handleUserClick(event) {
 }
 
 
-console.log(allPro);
+// console.log(allPro);
 
 
 
@@ -199,28 +223,29 @@ function viewChart() {
     });
 
 }
-console.log(proVotes, 'v');
-console.log(proName);
-console.log(proShown, 's');
+// console.log(proVotes, 'v');
+// console.log(proName);
+// console.log(proShown, 's');
 
 
 //////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 //button
 
-let button= document.getElementById('showresult');
+let button = document.getElementById('showresult');
 let parent = document.getElementById('container');
 button.addEventListener('click', createFun);
 
-function createFun(){
-     let list = document.getElementById('result');
-        let liElement;
-        for (let i = 0; i < allPro.length; i++) {
-            liElement = document.createElement('li');
-            list.appendChild(liElement);
-            liElement.textContent = `Name of Product (${allPro[i].name})   and get   (${allPro[i].votes})  of   Votes `;
+function createFun() {
+    let list = document.getElementById('result');
+    let liElement;
+    for (let i = 0; i < allPro.length; i++) {
+        liElement = document.createElement('li');
+        list.appendChild(liElement);
+        liElement.textContent = `Name of Product (${allPro[i].name})   and get   (${allPro[i].votes})  of   Votes `;
 
-    
-}}
+
+    }
+}
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
