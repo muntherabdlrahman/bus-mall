@@ -9,8 +9,15 @@ let sideImageElement = document.getElementById('side-image')
 let upperImageIndex;
 let lowerImageIndex;
 let sideImageIndex;
-let select = prompt('press number of votes you will take it');
-let maxAttempts = select;
+// let select;
+// function myinput(){
+//      let select= document.getElementById("myText").autocomplete = "off" .valueOf(String);
+
+//     }
+//     myinput(); 
+//     console.log(select);
+     let select = prompt('press number of votes you will take it');
+let maxAttempts=select; 
 let userAttemptsCounter = 0;
 
 let allPro = [];
@@ -18,8 +25,8 @@ let proName = [];
 let proVotes = [];
 let proShown = [];
 
-let newnewImageindex;
-let newImageindex = [];
+// let newnewImageindex;
+// let newImageindex = [];
 // let newlowerImageindex = [];
 // let newsideImageindex = [];
 
@@ -38,27 +45,26 @@ function Product(name, source) {
 
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
-new Product('bag (1)', '../imgs/bag (1).jpg');
-new Product('banana', '../imgs/banana.jpg');
-new Product('boots', '../imgs/boots.jpg');
-new Product('breakfast', '../imgs/breakfast.jpg');
-new Product('bubblegum', '../imgs/bubblegum.jpg');
-new Product('chair', '../imgs/chair.jpg');
-new Product('bathroom', '../imgs/bathroom.jpg');
+new Product('bag','./imgs/bag.jpg');
+new Product('banana','./imgs/banana.jpg');
+new Product('boots','./imgs/boots.jpg');
+new Product('breakfast','./imgs/breakfast.jpg');
+new Product('bubblegum','./imgs/bubblegum.jpg');
+new Product('chair','./imgs/chair.jpg');
+new Product('bathroom','./imgs/bathroom.jpg');
 /////////////////////////////////////////////////
-new Product('cthulhu', '../imgs/cthulhu.jpg');
-new Product('dog-duck', '../imgs/dog-duck.jpg');
-new Product('dragon', '../imgs/dragon.jpg');
-new Product('pen', '../imgs/pen.jpg');
-new Product('pet-sweep', '../imgs/pet-sweep.jpg');
-new Product('scissors', '../imgs/scissors.jpg');
+new Product('cthulhu','./imgs/cthulhu.jpg');
+new Product('dogduck','./imgs/dogduck.jpg');
+new Product('dragon','./imgs/dragon.jpg');
+new Product('pen','./imgs/pen.jpg');
+new Product('petsweep','./imgs/petsweep.jpg');
+new Product('scissors','./imgs/scissors.jpg');
 //////////////////////////////////////////////////
-new Product('shark', '../imgs/shark.jpg');
-new Product('sweep', '../imgs/sweep.png');
-new Product('tauntaun', '../imgs/tauntaun.jpg');
-new Product('unicorn', 'imgs/unicorn.jpg');
-new Product('water-can', '../imgs/water-can.jpg');
-new Product('wine-glass', '../imgs/wine-glass copy.jpg');
+new Product('shark','./imgs/shark.jpg');
+new Product('sweep','./imgs/sweep.jpg');
+new Product('tauntaun','./imgs/tauntaun.jpg');
+new Product('watercan','./imgs/watercan.jpg');
+new Product('wineglasscopy','imgs/wineglasscopy.jpg');
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////
 // random function
@@ -67,72 +73,74 @@ function generateRandomIndex() {
     return Math.floor(Math.random() * allPro.length);
 }
 ///////////////////////////////////////////////////
+let newImageindex=[];
+newImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex];
+
+let newlowerImageindex = [];
+newlowerImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex]
 
 function renderImages() {
     upperImageIndex = generateRandomIndex();
     lowerImageIndex = generateRandomIndex();
     sideImageIndex = generateRandomIndex();
-
-    // let newImageindex = [upperImageIndex, lowerImageIndex, sideImageIndex];
-    // console.log(newImageindex);
-
+    // console.log(upperImageIndex,lowerImageIndex,sideImageIndex,'kasjjasjk')
+    
+    
     do {
-
-        lowerImageIndex = generateRandomIndex();
-        upperImageIndex = generateRandomIndex();
-        sideImageIndex = generateRandomIndex();
-
-
-
-    } 
-
-
-    while (upperImageIndex === sideImageIndex || upperImageIndex === lowerImageIndex || sideImageIndex === lowerImageIndex) {
-
-        upperImageElement.src = allPro[upperImageIndex].source;
-        lowerImageElement.src = allPro[lowerImageIndex].source;
-        sideImageElement.src = allPro[sideImageIndex].source;
-
-
         
-        allPro[lowerImageIndex].shown++;
-        allPro[upperImageIndex].shown++;
-        allPro[sideImageIndex].shown++;
+        upperImageIndex = generateRandomIndex();
+        lowerImageIndex = generateRandomIndex();
+        sideImageIndex = generateRandomIndex();
+        
+
+
+    }while (upperImageIndex === lowerImageIndex|| upperImageIndex === sideImageIndex || lowerImageIndex === sideImageIndex
+       || newImageindex.includes(upperImageIndex|| newImageindex.includes(lowerImageIndex||newImageindex.includes(sideImageIndex)||
+       newlowerImageindex.includes(newImageindex))) ) {
+        
+        
     }
+    newImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex];
+    newlowerImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex]
+
+    // console.log(upperImageIndex,lowerImageIndex,sideImageIndex,'kasjjasjk')
+
+    upperImageElement.src = allPro[upperImageIndex].source;
+    lowerImageElement.src = allPro[lowerImageIndex].source;
+    sideImageElement.src = allPro[sideImageIndex].source;
+
+
+
+
+
+
+    allPro[lowerImageIndex].shown++;
+    allPro[upperImageIndex].shown++;
+    allPro[sideImageIndex].shown++;
+
+    // console.log(shown,'sdasdadas')
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 renderImages();
 
 
+
 upperImageElement.addEventListener('click', handleUserClick);
 lowerImageElement.addEventListener('click', handleUserClick);
-sideImageElement.addEventListener('click', handleUserClick);
+sideImageElement.addEventListener('click', handleUserClick); 
+
 
 function handleUserClick(event) {
+    
     userAttemptsCounter++;
     console.log(userAttemptsCounter);
     if (userAttemptsCounter <= maxAttempts) {
-        console.log(userAttemptsCounter);
+        // console.log(userAttemptsCounter);
         if (event.target.id === 'upper-image') {
             allPro[upperImageIndex].votes = allPro[upperImageIndex].votes + 1;
         } else if (event.target.id === 'lower-image') {
@@ -145,17 +153,13 @@ function handleUserClick(event) {
 
         }
 
-
-
-
-
-
         renderImages();
-    } else {
+    } 
+    
+    else {
         upperImageElement.removeEventListener('click', handleUserClick);
         lowerImageElement.removeEventListener('click', handleUserClick);
         sideImageElement.removeEventListener('click', handleUserClick);
-
 
 
         for (let i = 0; i < allPro.length; i++) {
