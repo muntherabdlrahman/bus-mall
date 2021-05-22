@@ -43,6 +43,30 @@ function Product(name, source) {
     proName.push(this.name);
 }
 
+
+
+////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// local storage
+function codejsonPro(){
+    let data= JSON.stringify(allPro);
+    localStorage.setItem('allPro',data);
+
+}
+
+// add function to getting product
+function localstoragePro(){
+    let stringobj0 = localStorage.getItem('allPro');
+    let normalobj0 = JSON.parse(stringobj0);
+    if ( normalobj0!== null ) {
+       allPro=normalobj0; 
+    }
+
+}
+
+
+
+
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 new Product('bag','./imgs/bag.jpg');
@@ -86,22 +110,28 @@ function renderImages() {
     // console.log(upperImageIndex,lowerImageIndex,sideImageIndex,'kasjjasjk')
     
     
-    do {
+    // do {
         
-        upperImageIndex = generateRandomIndex();
-        lowerImageIndex = generateRandomIndex();
-        sideImageIndex = generateRandomIndex();
+    //     upperImageIndex = generateRandomIndex();
+    //     lowerImageIndex = generateRandomIndex();
+    //     sideImageIndex = generateRandomIndex();
         
 
 
-    }while (upperImageIndex === lowerImageIndex|| upperImageIndex === sideImageIndex || lowerImageIndex === sideImageIndex
-       || newImageindex.includes(upperImageIndex|| newImageindex.includes(lowerImageIndex||newImageindex.includes(sideImageIndex)||
-       newlowerImageindex.includes(newImageindex))) ) {
-        
-        
+    // }
+    while (upperImageIndex === lowerImageIndex|| upperImageIndex === sideImageIndex || lowerImageIndex === sideImageIndex
+       || newImageindex.includes(upperImageIndex|| newImageindex.includes(lowerImageIndex||newImageindex.includes(sideImageIndex))) ) {
+    
+    upperImageIndex = generateRandomIndex();
+    lowerImageIndex = generateRandomIndex();
+    sideImageIndex = generateRandomIndex();
+    if(newImageindex===upperImageIndex && newImageindex=== lowerImageIndex && newImageindex=== sideImageIndex)
+    renderImages(newImageindex+20) ;
     }
+    newImageindex=[];
+
     newImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex];
-    newlowerImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex]
+    // newlowerImageindex=[upperImageIndex,lowerImageIndex,sideImageIndex]
 
     // console.log(upperImageIndex,lowerImageIndex,sideImageIndex,'kasjjasjk')
 
@@ -157,6 +187,7 @@ function handleUserClick(event) {
     } 
     
     else {
+        codejsonPro();
         upperImageElement.removeEventListener('click', handleUserClick);
         lowerImageElement.removeEventListener('click', handleUserClick);
         sideImageElement.removeEventListener('click', handleUserClick);
@@ -237,6 +268,11 @@ function createFun() {
 
 
     }
+
+
 }
+
+
+localstoragePro();
 //////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
